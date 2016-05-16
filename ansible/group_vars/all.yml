@@ -1,0 +1,4 @@
+---
+# This is used for the nginx server configuration, but nginx should listen to all names
+server_hostname: vagrant.vm
+

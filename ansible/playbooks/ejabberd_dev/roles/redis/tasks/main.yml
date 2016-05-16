@@ -1,0 +1,9 @@
+---
+- name: Install redis server package
+  become: true
+  apt: pkg=redis-server state=installed
+  tags: [packages]
+
+- name: Ensure redis is started on boot
+  become: true
+  service: name=redis-server state=started enabled=true

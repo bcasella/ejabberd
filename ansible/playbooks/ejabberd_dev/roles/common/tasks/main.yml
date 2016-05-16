@@ -1,0 +1,26 @@
+---
+- name: Refresh apt cache
+  # If we want to keep the distribution up-to-date: upgrade=yes
+  apt: update_cache=yes cache_valid_time=3600
+  tags: [update]
+  become: true
+
+# Tested with ubuntu
+- name: Install base packages for development
+  apt: pkg={{ item }} state=installed
+  become: true
+  tags: [packages]
+  with_items:
+    - curl
+    - screen
+    - git
+    - build-essential
+    - automake
+    - autoconf
+    # needed to build ejabberd
+    - libexpat1-dev
+    # For sqlite support
+    - libsqlite3-dev
+    - libyaml-dev
+
+# TODO: Set proper timezone
